@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/themes/light.css" />
+
+  <div id="catalog-container" class="container">
+    <!-- Shoelace Tab Group -->
+    <sl-tab-group id="tabs">
+      <!-- Tabs -->
+      <sl-tab slot="nav" panel="group0">Header One</sl-tab>
+      <sl-tab slot="nav" panel="group1">Header Two</sl-tab>
+      <sl-tab slot="nav" panel="group2">Header Three</sl-tab>
+
+      <!-- Tab Panels -->
+      <sl-tab-panel name="group0">
+        <!-- Content Section -->
+        <div class="card-container">
+          <sl-card class="card-overview">
+            <img slot="image" src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kitten" />
+            <strong>Mittens</strong><br />
+            This kitten is as small as he is playful. Bring him home today!<br />
+            <small>6 weeks old</small>
+            <div slot="footer"><sl-button variant="primary" pill>More Info</sl-button></div>
+          </sl-card>
+          <sl-card class="card-overview">
+            <img slot="image" src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kitten" />
+            <strong>Mittens</strong><br />
+            This kitten is as small as he is playful. Bring him home today!<br />
+            <small>6 weeks old</small>
+            <div slot="footer"><sl-button variant="primary" pill>More Info</sl-button></div>
+          </sl-card>
+          <sl-card class="card-overview">
+            <img slot="image" src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kitten" />
+            <strong>Mittens</strong><br />
+            This kitten is as small as he is playful. Bring him home today!<br />
+            <small>6 weeks old</small>
+            <div slot="footer"><sl-button variant="primary" pill>More Info</sl-button></div>
+          </sl-card>
+          <sl-card class="card-overview">
+            <img slot="image" src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kitten" />
+            <strong>Mittens</strong><br />
+            This kitten is as small as he is playful. Bring him home today!<br />
+            <small>6 weeks old</small>
+            <div slot="footer"><sl-button variant="primary" pill>More Info</sl-button></div>
+          </sl-card>
+        </div>
+        <!-- Pagination Section -->
+        <div class="pagination-container">
+          <!-- Pagination buttons will be dynamically added here -->
+        </div>
+      </sl-tab-panel>
+
+      <sl-tab-panel name="group1">
+        <!-- Similar structure for another group -->
+        <div class="card-container">
+          <sl-card class="card-overview">
+            <p>Test 3</p>
+          </sl-card>
+          <sl-card class="card-overview">
+            <p>Test 4</p>
+          </sl-card>
+        </div>
+        <div class="pagination-container"></div>
+      </sl-tab-panel>
+
+      <sl-tab-panel name="group2">
+        <!-- Similar structure for another group -->
+        <div class="card-container">
+          <sl-card class="card-overview">
+            <p>Test 5</p>
+          </sl-card>
+          <sl-card class="card-overview">
+            <p>Test 6</p>
+          </sl-card>
+        </div>
+        <div class="pagination-container"></div>
+      </sl-tab-panel>
+    </sl-tab-group>
+  </div>
+
+  <style>
+    .card-overview {
+      max-width: 300px;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .card-overview small {
+      color: var(--sl-color-neutral-500);
+    }
+
+    .card-overview [slot='footer'] {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      min-width: 350px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    #tabs {
+      width: 100%;
+    }
+    #tabs::part(tabs) {
+      justify-content: center;
+    }
+    #tabs::part(active-tab-indicator) {
+      display: none;
+    }
+    
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap; /* Allows cards to wrap to the next line */
+      justify-content: center; /* Centers cards horizontally */
+      gap: 10px; /* Spacing between cards */
+    }
+
+    .pagination-container {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .card-page {
+      display: none;
+    }
+
+    .card-page.active {
+      display: block;
+    }
+    /* Styles for the pagination bullets */
+    .pagination-bullets {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px; /* Adjusted margin */
+    }
+
+    .pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .pagination-bullet.active {
+      background-color: #007bff;
+    }
+
+    /* Ensures the pagination buttons are evenly spaced and look centered */
+    sl-button {
+      margin: 20px 10px;
+    }
+  </style>
+
+  <script>
+
+    async function generateElements() {
+      
+    }
+
+    async function initPagination() {
+      const cardsPerPage = 3; // Number of cards per page
+      const tabPanels = document.querySelectorAll('sl-tab-panel');
+      tabPanels.forEach((tabPanel) => {
+        const cards = tabPanel.querySelectorAll('.card-overview');
+        const totalCards = cards.length;
+
+        if (totalCards > cardsPerPage) {
+          const pages = Math.ceil(totalCards / cardsPerPage);
+          const paginationContainer = tabPanel.querySelector('.pagination-container');
+          
+          // Create page containers
+          for (let i = 0; i < pages; i++) {
+            const page = document.createElement('div');
+            page.classList.add('card-page');
+            paginationContainer.appendChild(page);
+            const start = i * cardsPerPage;
+            const end = start + cardsPerPage;
+
+            cards.forEach((card, index) => {
+              if (index >= start && index < end) {
+                page.appendChild(card);
+              }
+            });
+          }
+
+          // Add next/previous buttons
+          const prevButton = document.createElement('sl-button');
+          prevButton.textContent = 'Previous';
+          prevButton.variant = 'default';
+          paginationContainer.appendChild(prevButton);
+
+          const nextButton = document.createElement('sl-button');
+          nextButton.textContent = 'Next';
+          nextButton.variant = 'default';
+          paginationContainer.appendChild(nextButton);
+
+          // Create page bullets below the buttons
+          const bulletsContainer = document.createElement('div');
+          bulletsContainer.classList.add('pagination-bullets');
+          paginationContainer.appendChild(bulletsContainer);
+
+          for (let i = 0; i < pages; i++) {
+            const bullet = document.createElement('span');
+            bullet.classList.add('pagination-bullet');
+            bulletsContainer.appendChild(bullet);
+          }
+
+          let currentPage = 0;
+          function updatePage() {
+            const pages = tabPanel.querySelectorAll('.card-page');
+            const bullets = tabPanel.querySelectorAll('.pagination-bullet');
+            
+            pages.forEach((page, index) => {
+              page.classList.remove('active');
+              if (index === currentPage) {
+                page.classList.add('active');
+              }
+            });
+
+            bullets.forEach((bullet, index) => {
+              bullet.classList.remove('active');
+              if (index === currentPage) {
+                bullet.classList.add('active');
+              }
+            });
+          }
+
+          prevButton.addEventListener('click', () => {
+            if (currentPage > 0) {
+              currentPage--;
+              updatePage();
+            }
+          });
+
+          nextButton.addEventListener('click', () => {
+            const pages = tabPanel.querySelectorAll('.card-page');
+            if (currentPage < pages.length - 1) {
+              currentPage++;
+              updatePage();
+            }
+          });
+
+          // Add click event for page bullets
+          const bullets = tabPanel.querySelectorAll('.pagination-bullet');
+          bullets.forEach((bullet, index) => {
+            bullet.addEventListener('click', () => {
+              currentPage = index;
+              updatePage();
+            });
+          });
+
+          updatePage();
+        } else {
+          // If there are 3 or fewer cards, don't add pagination
+          cards.forEach(card => {
+            tabPanel.querySelector('.card-container').appendChild(card);
+          });
+        }
+      });
+
+      // Dynamically load the Shoelace script after content is ready
+     
+      }
+
+      async function injectShoelace() {
+        const script = document.createElement('script');
+        script.type = 'module';  // Add type="module" to handle the import statements
+        script.src = 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js';
+        document.body.appendChild(script);
+      }
+    // Pagination logic
+    document.addEventListener('DOMContentLoaded', function() {
+    initPagination()
+    injectShoelace()
+});
+
+
+  </script>
+
+</body>
+</html>
